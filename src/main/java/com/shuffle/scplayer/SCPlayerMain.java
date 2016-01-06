@@ -25,6 +25,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.shuffle.scplayer.addons.display.PlayerDisplayIntegration;
 import com.shuffle.scplayer.core.AudioListener;
 import com.shuffle.scplayer.core.AuthenticationListener;
 import com.shuffle.scplayer.core.PlayerListener;
@@ -228,6 +229,9 @@ public class SCPlayerMain {
 		if (!standalone) {
 			PlayerWebServerIntegration webServerIntegration = new PlayerWebServerIntegration(player, webPort);
 			player.addPlayerListener(webServerIntegration);
+			
+			PlayerDisplayIntegration displayIntegration = new PlayerDisplayIntegration();
+			player.addPlayerListener(displayIntegration);
 		}
 		
 		player.setBitrate(mapBitrate.get(bitrate) != null ? mapBitrate.get(bitrate) : SpBitrate.kSpBitrate320k);
